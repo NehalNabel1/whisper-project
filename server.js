@@ -16,6 +16,9 @@ app.set("trust proxy", 1);
 app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
+app.get("/", (req, res) => {
+  res.json({ status: "API is running " });
+});
 
 app.get("/health", (_req, res) => res.json({ ok: true }));
 
@@ -29,9 +32,10 @@ app.use(express.static("public"));
 app.use(notFound);
 app.use(errorHandler);
 
+
 const PORT = process.env.PORT || 3000;
 
-await connectDB();
+// await connectDB();
 // app.listen(PORT, () => console.log(`whisper listening on ${PORT}`));
 export default app;
 
