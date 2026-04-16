@@ -32,7 +32,8 @@ app.use(errorHandler);
 const PORT = process.env.PORT || 3000;
 
 await connectDB();
-app.listen(PORT, () => console.log(`whisper listening on ${PORT}`));
+// app.listen(PORT, () => console.log(`whisper listening on ${PORT}`));
+export default app;
 
 // $env:Path += ";C:\Users\ag\.deno\bin"
 // deno --version
