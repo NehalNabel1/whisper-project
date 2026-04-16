@@ -7,19 +7,22 @@
 //   return app(req, res);
 // }
 
+import serverless from "serverless-http";
 import app from "../server.js";
 import { connectDB } from "../config/db.js";
 
 let isConnected = false;
 
-export default async function handler(req, res) {
+const handler = serverless(app);
+
+export default async function (req, res) {
   try {
     if (!isConnected) {
       await connectDB();
       isConnected = true;
     }
 
-    return app(req, res);
+    return handler(req, res);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
